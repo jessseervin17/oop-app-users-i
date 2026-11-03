@@ -4,4 +4,4 @@ WORKDIR ./app
 
 COPY . .
 
-CMD ["pytest"]
+CMD ["python", "User.py"]
