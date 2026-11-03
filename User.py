@@ -19,7 +19,6 @@ user_2 = Users("nobody2", "nobody22@yahoo.com", "password1234", 25, 1987654321, 
 user_3 = Users("nobody3", "nobody33@yahoo.com", "password1234567890", 30, 1122334455, 3605085008, "Bob", "Smith", "02/29/2006")
 
 print(user_1)
-
  
 
 # your User class goes here
