@@ -1,4 +1,15 @@
 class Users():
+    posts = {}
+    
+    def createpost(self, new_post):
+        Users.posts[self.user_name]=new_post
+    
+    def deletepost(self):
+        del Users.posts[self.user_name]
+    
+    
+        
+        
     def __init__(self, user_name, email, password, age, SSN, phone, first_name, last_name, DOB):
         self.user_name = user_name
         self.email = email
@@ -18,7 +29,18 @@ user_2 = Users("nobody2", "nobody22@yahoo.com", "password1234", 25, 1987654321, 
 
 user_3 = Users("nobody3", "nobody33@yahoo.com", "password1234567890", 30, 1122334455, 3605085008, "Bob", "Smith", "02/29/2006")
 
-print(user_1)
- 
+print(Users.posts)
+
+user_1.createpost("My post")
+
+print(Users.posts)
+
+user_2.createpost("Now my post")
+
+print(Users.posts)
+
+user_2.deletepost()
+
+print(Users.posts)
 
 # your User class goes here
