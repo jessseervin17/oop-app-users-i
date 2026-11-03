@@ -3,12 +3,12 @@ name: App Users Pytest
 on:
   push:
     branches:
-      -dev
-      -master
+      - dev
+      - master
   pull_request:
     branches:
-      -dev
-      -master
+      - dev
+      - master
   workflow_dispatch:
 
 jobs:
