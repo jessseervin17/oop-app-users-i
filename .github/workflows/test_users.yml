@@ -22,6 +22,6 @@ jobs:
         with:
           python-version: 3.13
       - name: Install Pytest
-        run: pip install --no-cache-dir pytest
+        run: pip install pytest --no-cache-dir
       - name: Run pytest
         run: pytest
