@@ -1,0 +1,27 @@
+name: App Users Pytest
+
+on:
+  push:
+    branches:
+      -dev
+      -master
+  pull_request:
+    branches:
+      -dev
+      -master
+  workflow_dispatch:
+
+jobs:
+  unit_tests:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get code in
+        uses: actions/checkout@v7
+      - name: Get action setup
+        uses: actions/setup-python@v7
+        with:
+          python-version: 3.13
+      - name: Install Pytest
+        run: pip install pytest --no-cache-dir
+      - name: Run pytest
+        run: pytest
