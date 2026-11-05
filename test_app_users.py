@@ -7,36 +7,36 @@ Info stays in sync
 Bonus: Method for deleting a post, info stays in sync"""
 
 def test_post_method():
-    user1=Users("Jesse", "nobody21@yahoo.com", "password")
-    user1.createpost("My post")
-    assert Users.posts=={"Jesse":"My post"}
+    user1=FreeUser("Jesse", "nobody21@yahoo.com", "password")
+    user1.createpost("My post", "Content")
+    assert Users.posts=={"My post":"Content"}
     
-def test_overwrite_post():
-    user1=Users("Jesse", "nobody21@yahoo.com", "password")
-    user1.createpost("My post")
-    user1.createpost("My second post")
-    assert Users.posts=={"Jesse":"My post"}
+def test_no_overwrite_post():
+    user1=FreeUser("Jesse", "nobody21@yahoo.com", "password")
+    user1.createpost("My post", "Content")
+    user1.createpost("My second post", "More Content")
+    assert Users.posts=={"My post":"Content", "My second post":"More Content"}
 
 def test_delete_post_method():
-    user1=Users("Jesse", "nobody21@yahoo.com", "password")
-    user1.createpost("My post")
-    user1.deletepost()
+    user1=FreeUser("Jesse", "nobody21@yahoo.com", "password")
+    user1.deletepost("My post")
+    user1.deletepost("My second post")
     assert Users.posts=={}
 
 def test_multiple_posts():
-    user1=Users("Jesse", "nobody21@yahoo.com", "password")
-    user2 = Users("Josiah", "nobody22@yahoo.com", "password1234")
-    user1.createpost("My post")
-    user2.createpost("Now my post")
-    assert Users.posts=={"Jesse":"My post", "Josiah": "Now my post"}
+    user1=FreeUser("Jesse", "nobody21@yahoo.com", "password")
+    user2 = FreeUser("Josiah", "nobody22@yahoo.com", "password1234")
+    user1.createpost("My post", "Content")
+    user2.createpost("Now my post", "My Content")
+    assert Users.posts=={"My post":"Content", "Now my post": "My Content"}
 
 def test_multiple_posts_with_delete():
-    user1=Users("Jesse", "nobody21@yahoo.com", "password")
-    user2 = Users("Josiah", "nobody22@yahoo.com", "password1234")
-    user1.createpost("My post")
-    user2.createpost("Now my post")
-    user1.deletepost()
-    assert Users.posts=={"Josiah":"Now my post"}
+    user1=FreeUser("Jesse", "nobody21@yahoo.com", "password")
+    user2 = PremiumUser("Josiah", "nobody22@yahoo.com", "password1234")
+    user1.createpost("My post", "Content")
+    user2.createpost("Now my post", "More Content")
+    user1.deletepost("My post")
+    assert Users.posts=={"Now my post":"More Content"}
 
 def test_free_user():
     free_user1=FreeUser("James", "gmail.com", "password")
@@ -51,13 +51,16 @@ def test_premium_user():
 
 def test_free_post_limit():
     free_user2=FreeUser("Jonah", "jonah@thewhale.com", "fishstink123")
+    free_user2.createpost("Post1", "Content")
+    free_user2.createpost("Post2", "More Content")
+    post = free_user2.createpost("Post3", "Can I post this?")
+    assert post == "You have reached your max post limit on the free plan. Delete a post to add another, or get the premium user plan to make as many posts as you want!"
 
+def test_free_post():
+    free_user2=FreeUser("Jonah", "jonah@thewhale.com", "fishstink123")
+    post=free_user2.createpost("Post1", "More Content")
+    assert post == "You've added a post! Print User.posts to see your post!"
 
-#instance attribute in free users to keep track of amount of posts
-#have a post parameter in the free user class
-#have a getter and setter that check to see if user has max posts
-#setter will inform the user they must delete to post to add another
-#post changes to using a post title key
 
 
     

@@ -25,12 +25,10 @@ class FreeUser(Users):
     
     def createpost(self, post_title, post_content):
             if self.post==2:
-                print("You have reached your max post limit on the free plan. Delete a post to add another, or get the premium user plan to make as many posts as you want!")
                 return "You have reached your max post limit on the free plan. Delete a post to add another, or get the premium user plan to make as many posts as you want!"
             else:
                 Users.posts[post_title]=post_content
                 self.post+=1
-                print("You've added a post! Print User.posts to see your post!")
                 return "You've added a post! Print User.posts to see your post!"
     
     def deletepost(self, post_title):
@@ -47,12 +45,7 @@ class PremiumUser(Users):
 
 free_user1=FreeUser("James", "imjames@gmail.com", "password")
 
-print(free_user1.post)
-free_user1.createpost("New account", "I made an account!")
-print(Users.posts)
-free_user1.createpost("My second post", "I posted a 2nd post!")
-print(Users.posts)
-free_user1.createpost("My third post", "Can I add this?")
+
 print(Users.posts)
 
 # your User class goes here
