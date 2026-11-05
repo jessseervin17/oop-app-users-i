@@ -15,7 +15,7 @@ def test_overwrite_post():
     user1=Users("Jesse", "nobody21@yahoo.com", "password")
     user1.createpost("My post")
     user1.createpost("My second post")
-    assert Users.posts=={"Jesse":"My second post"}
+    assert Users.posts=={"Jesse":"My post"}
 
 def test_delete_post_method():
     user1=Users("Jesse", "nobody21@yahoo.com", "password")
@@ -47,6 +47,17 @@ def test_premium_user():
     premium_user1=PremiumUser("James", "atmail.com", "12345")
     assert premium_user1.privileges=="CRUD"
     assert premium_user1.password=="12345"
+
+
+def test_free_post_limit():
+    free_user2=FreeUser("Jonah", "jonah@thewhale.com", "fishstink123")
+
+
+#instance attribute in free users to keep track of amount of posts
+#have a post parameter in the free user class
+#have a getter and setter that check to see if user has max posts
+#setter will inform the user they must delete to post to add another
+#post changes to using a post title key
 
 
     
